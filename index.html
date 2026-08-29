@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Reminder 🌷</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            font-family: Georgia, serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% 40%,
+                    #29334d 0%,
+                    #151a2b 45%,
+                    #090b13 100%
+                );
+
+            color: white;
+        }
+
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        #intro {
+            text-align: center;
+            transition: 2s ease;
+        }
+
+        #intro h1 {
+            font-size: 40px;
+            font-weight: normal;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        #intro p {
+            opacity: 0.7;
+            font-family: Arial, sans-serif;
+            margin-bottom: 40px;
+        }
+
+
+        button {
+            border: none;
+            padding: 15px 35px;
+
+            border-radius: 40px;
+
+            background: #f6a6c9;
+            color: white;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 20px rgba(246, 166, 201, 0.25);
+
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+
+            box-shadow:
+                0 0 35px rgba(246, 166, 201, 0.5);
+        }
+
+
+        /* =========================
+           GARDEN
+        ========================= */
+
+        #garden {
+            position: absolute;
+
+            width: 320px;
+            height: 420px;
+
+            bottom: 40px;
+
+            display: none;
+        }
+
+
+        /* Ground */
+
+        .ground {
+            position: absolute;
+
+            bottom: 0;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 180px;
+            height: 20px;
+
+            background: #30271f;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+
+        /* =========================
+           STEM
+        ========================= */
+
+        .stem {
+            position: absolute;
+
+            bottom: 15px;
+            left: 155px;
+
+            width: 9px;
+            height: 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    #285c39,
+                    #57a968,
+                    #285c39
+                );
+
+            border-radius: 10px;
+
+            transform-origin: bottom;
+
+            animation:
+                growStem 4s ease-out forwards;
+
+            animation-delay: 1s;
+        }
+
+
+        @keyframes growStem {
+
+            0% {
+                height: 0;
+            }
+
+            100% {
+                height: 250px;
+            }
+        }
+
+
+        /* =========================
+           LEAVES
+        ========================= */
+
+        .leaf {
+            position: absolute;
+
+            width: 80px;
+            height: 38px;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #5fbd72,
+                    #287544
+                );
+
+            border-radius: 100% 0;
+
+            opacity: 0;
+
+            transform: scale(0);
+
+            transform-origin: bottom right;
+        }
+
+
+        .leaf-left {
+            left: 80px;
+            bottom: 125px;
+
+            transform: rotate(-28deg) scale(0);
+
+            animation:
+                leafLeft 1.2s ease-out forwards;
+
+            animation-delay: 3.8s;
+        }
+
+
+        .leaf-right {
+            left: 50px;
+            bottom: 150px;
+
+            transform: rotate(25deg) scaleX(-1) scale(0);
+
+            animation:
+                leafRight 1.2s ease-out forwards;
+
+            animation-delay: 4.5s;
+        }
+
+
+        @keyframes leafLeft {
+
+            0% {
+                opacity: 0;
+                transform: rotate(-28deg) scale(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(-28deg) scale(1);
+            }
+        }
+
+
+        @keyframes leafRight {
+
+            0% {
+                opacity: 0;
+                transform: rotate(25deg) scaleX(-1) scale(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(25deg) scaleX(-1) scale(1);
+            }
+        }
+
+
+        /* =========================
+           FLOWER
+        ========================= */
+
+        .flower {
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            left: 80px;
+            top: 15px;
+
+            transform:
+                translateY(40px)
+                scale(0.08);
+
+            opacity: 0;
+
+            animation:
+                budAppear 1.5s ease-out forwards,
+                flowerBloom 1.6s cubic-bezier(.2, 1.4, .4, 1) forwards;
+
+            animation-delay:
+                5.3s,
+                7.2s;
+
+            z-index: 5;
+        }
+
+
+        /* Tiny bud */
+
+        @keyframes budAppear {
+
+            0% {
+                opacity: 0;
+                transform:
+                    translateY(40px)
+                    scale(0.03);
+            }
+
+            100% {
+                opacity: 1;
+                transform:
+                    translateY(40px)
+                    scale(0.28);
+            }
+        }
+
+
+        /* Big bloom */
+
+        @keyframes flowerBloom {
+
+            0% {
+                transform:
+                    translateY(40px)
+                    scale(0.28);
+            }
+
+            70% {
+                transform:
+                    translateY(40px)
+                    scale(1.12);
+            }
+
+            100% {
+                transform:
+                    translateY(40px)
+                    scale(1);
+            }
+        }
+
+
+        /* =========================
+           PETALS
+        ========================= */
+
+        .petal {
+
+            position: absolute;
+
+            width: 72px;
+            height: 72px;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    #ffd0e3,
+                    #f48ab8 65%,
+                    #df6098
+                );
+
+            border-radius: 50%;
+
+            box-shadow:
+                inset -5px -5px 10px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .petal1 {
+            top: 0;
+            left: 39px;
+        }
+
+        .petal2 {
+            top: 39px;
+            left: 0;
+        }
+
+        .petal3 {
+            top: 39px;
+            right: 0;
+        }
+
+        .petal4 {
+            bottom: 0;
+            left: 39px;
+        }
+
+
+        /* =========================
+           FLOWER CENTER
+        ========================= */
+
+        .center {
+
+            position: absolute;
+
+            width: 55px;
+            height: 55px;
+
+            left: 47px;
+            top: 47px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #fff3a6,
+                    #f6c84a 60%,
+                    #d99b25
+                );
+
+            border-radius: 50%;
+
+            z-index: 10;
+
+            box-shadow:
+                0 0 15px rgba(255, 215, 100, 0.6);
+        }
+
+
+        /* =========================
+           GLOW
+        ========================= */
+
+        .flower-glow {
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            left: -40px;
+            top: -40px;
+
+            border-radius: 50%;
+
+            background: #ffb7d5;
+
+            filter: blur(55px);
+
+            opacity: 0;
+
+            animation:
+                glowAppear 2s ease-in-out forwards;
+
+            animation-delay: 8.2s;
+
+            z-index: -1;
+        }
+
+
+        @keyframes glowAppear {
+
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            100% {
+                opacity: 0.4;
+                transform: scale(1.2);
+            }
+        }
+
+
+        /* =========================
+           FLOATING PARTICLES
+        ========================= */
+
+        .particle {
+
+            position: absolute;
+
+            width: 6px;
+            height: 6px;
+
+            background: #ffd6e7;
+
+            border-radius: 50%;
+
+            opacity: 0;
+
+            animation:
+                floatUp 4s ease-in-out infinite;
+        }
+
+
+        .p1 {
+            left: 20px;
+            bottom: 80px;
+            animation-delay: 8s;
+        }
+
+        .p2 {
+            left: 270px;
+            bottom: 100px;
+            animation-delay: 8.8s;
+        }
+
+        .p3 {
+            left: 50px;
+            bottom: 200px;
+            animation-delay: 9.4s;
+        }
+
+        .p4 {
+            left: 250px;
+            bottom: 230px;
+            animation-delay: 10s;
+        }
+
+        .p5 {
+            left: 140px;
+            bottom: 260px;
+            animation-delay: 9s;
+        }
+
+
+        @keyframes floatUp {
+
+            0% {
+                opacity: 0;
+                transform:
+                    translateY(30px)
+                    scale(0);
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform:
+                    translateY(-100px)
+                    scale(1.5);
+            }
+        }
+
+
+        /* =========================
+           FINAL MESSAGE
+        ========================= */
+
+        #message {
+
+            position: absolute;
+
+            bottom: 100px;
+
+            width: 90%;
+            max-width: 600px;
+
+            text-align: center;
+
+            opacity: 0;
+
+            transform:
+                translateY(30px)
+                scale(0.9);
+
+            animation:
+                messageAppear 1.5s ease-out forwards;
+
+            animation-delay: 11s;
+        }
+
+
+        #message h2 {
+
+            font-size: 27px;
+
+            font-weight: normal;
+
+            margin-bottom: 12px;
+
+            color: #ffd6e7;
+        }
+
+
+        #message p {
+
+            font-size: 18px;
+
+            line-height: 1.6;
+
+            color: #eeeeee;
+
+            margin: 0 auto;
+        }
+
+
+        #message span {
+
+            display: block;
+
+            margin-top: 12px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 14px;
+
+            opacity: 0.65;
+        }
+
+
+        @keyframes messageAppear {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        /* =========================
+           RESTART
+        ========================= */
+
+        #restart {
+
+            display: none;
+
+            position: absolute;
+
+            bottom: 20px;
+
+            right: 20px;
+
+            padding: 10px 18px;
+
+            font-size: 13px;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            #intro h1 {
+                font-size: 26px;
+            }
+
+            #garden {
+                transform: scale(0.85);
+                bottom: 80px;
+            }
+
+            #message {
+                bottom: 25px;
+            }
+
+            #message h2 {
+                font-size: 23px;
+            }
+
+            #message p {
+                font-size: 16px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- INTRO -->
+
+    <div id="intro">
+
+        <h1>A little reminder 🌱</h1>
+
+        <p>Some things are worth waiting for...</p>
+
+        <button onclick="startGrowing()">
+            Click Me 🌷
+        </button>
+
+    </div>
+
+
+
+    <!-- FLOWER -->
+
+    <div id="garden">
+
+        <div class="ground"></div>
+
+        <div class="flower-glow"></div>
+
+        <div class="stem"></div>
+
+        <div class="leaf leaf-left"></div>
+
+        <div class="leaf leaf-right"></div>
+
+
+        <div class="flower">
+
+            <div class="petal petal1"></div>
+
+            <div class="petal petal2"></div>
+
+            <div class="petal petal3"></div>
+
+            <div class="petal petal4"></div>
+
+            <div class="center"></div>
+
+        </div>
+
+
+        <!-- Floating lights -->
+
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+        <div class="particle p4"></div>
+        <div class="particle p5"></div>
+
+    </div>
+
+
+
+    <!-- FINAL MESSAGE -->
+
+    <div id="message">
+
+        <h2>Something beautiful takes time. 🌷</h2>
+
+        <p>
+            “For everything there is a season,
+            and a time for every matter under heaven.”
+        </p>
+
+        <span>
+            — Ecclesiastes 3:1
+        </span>
+
+    </div>
+
+
+
+    <!-- RESTART BUTTON -->
+
+    <button id="restart" onclick="location.reload()">
+        ↻ Again
+    </button>
+
+
+
+    <script>
+
+        function startGrowing() {
+
+            /* Hide introduction */
+
+            document.getElementById("intro").style.opacity = "0";
+
+
+            setTimeout(function() {
+
+                document.getElementById("intro").style.display = "none";
+
+                document.getElementById("garden").style.display = "block";
+
+            }, 900);
+
+
+            /* Show restart button */
+
+            setTimeout(function() {
+
+                document.getElementById("restart").style.display = "block";
+
+            }, 12500);
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
